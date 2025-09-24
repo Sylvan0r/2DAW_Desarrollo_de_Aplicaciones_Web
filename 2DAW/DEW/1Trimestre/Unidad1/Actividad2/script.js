@@ -1,6 +1,6 @@
 const button = document.getElementById('but')
 if(button){
-    button.addEventListener('click', updateLabel);
+  button.addEventListener('click', updateLabel);
 }
 
 function updateLabel() {

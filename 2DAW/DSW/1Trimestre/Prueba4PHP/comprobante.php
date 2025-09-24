@@ -1,23 +1,31 @@
-<?php
+<?php    
     session_start();
+    $_SESSION["user"] = "";
+    $_SESSION["gmail"] = "";
+    $_SESSION["passwd"] = "";
+    $_SESSION["error"] = "";
+
     if($_POST["user"] == "adriano"){
+        $_SESSION["user"] = "adriano";
         validarGmail();
         if($_POST["gmail"] == "adfor409@gmail.com"){
+            $_SESSION["gmail"] = "adfor409@gmail.com";
             validarPasswd();
         }else{
-            echo "<br>Gmail incorrecto (no es el de adriano)";
-            header("Location: http://192.168.58.132/DSW/1Trimestre/Prueba4PHP");                    
+            $_SESSION["error"] = "Gmail incorrecto (no es el de adriano)";
+            header("Location: index.php");                    
         }
     }else{
-        echo "<br>Usuario incorrecto";
-        header("Location: http://192.168.58.132/DSW/1Trimestre/Prueba4PHP");        
+        $_SESSION["error"] = "Usuario incorrecto";
+        header("Location: index.php");        
     }
 
     function validarGmail(){
         if(isset($_POST["gmail"]) && filter_var($_POST["gmail"], FILTER_VALIDATE_EMAIL)){
             echo "<br>Gmail valido";
         }else{
-            echo "<br>Gmail invalido (no es valido)";
+            $_SESSION["error"] = "Gmail invalido (no es valido)";
+            header("Location: index.php");        
         }
     }
 
@@ -25,14 +33,14 @@
         if($_POST["passwd"] == 1234){
             if($_POST["passwd"]==$_POST["passwd2"] && $_POST["passwd2"]==1234){
                 echo "<br>Login correcto";
-                $_SESSION["user"] == "adriano";
+                $_SESSION["passwd"] = "1234";
             }else{
-                echo "<br>Confirmacion de contraseña incorrecta";
-                header("Location: http://192.168.58.132/DSW/1Trimestre/Prueba4PHP");                        
+                $_SESSION["error"] = "Confirmacion de contraseña incorrecta";
+                header("Location: index.php");                        
             }
         }else{
-            echo "<br>Contraseña incorrecta";
-            header("Location: http://192.168.58.132/DSW/1Trimestre/Prueba4PHP");                    
+            $_SESSION["error"] = "Contraseña incorrecta";
+            header("Location: index.php");                    
         }
     }
 ?>
