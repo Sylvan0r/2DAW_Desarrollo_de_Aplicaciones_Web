@@ -26,6 +26,10 @@
                 echo "Error: " . $_SESSION["error"];
                 $_SESSION["error"] = "";
             }
+            if(isset( $_SESSION["exito"]) && $_SESSION["exito"] != "") {
+                echo "Exito: " . $_SESSION["exito"];
+                $_SESSION["exito"] = "";
+            }
         ?>
     </body>
 </html>

@@ -13,7 +13,7 @@
     }
 
     // prepare and bind
-    $stmtcr = $conn->prepare("CREATE TABLE IF NOT EXISTS MyGuests (firstname varchar(255), lastname varchar(255), email varchar(255))");
+    $stmtcr = $conn->prepare("CREATE TABLE IF NOT EXISTS MyGuests (firstname varchar(255), email varchar(255), passwd varchar(255))");
     $stmtcr->execute();
     $stmtcr->close();
 
