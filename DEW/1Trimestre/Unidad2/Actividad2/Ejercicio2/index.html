@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora de FCM</title>
+        <h1>Calculadora de FCM</h1>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>        
+    </head>
+    <body>
+        <select id="gender">
+            <option disabled selected value="none">Seleccione una opción</option>
+            <option value="masc">Masculino</option>
+            <option value="fem">Femenino</option>
+        </select>        
+        <br><br>
+        <input placeholder="Introduzca su edad" id="age" type="number">
+        <br><br>
+        <button type="submit" id="bt">Enviar</button>
+        <p id="resultado"></p>     
+        <ul id="extra" style="list-style: none;">
+            <li id="zonaRec"></li>
+            <li id="zonaAer"></li>
+            <li id="zonaAnaer"></li>
+            <li id="lineaRoja"></li>
+        </ul>
+        <script src="fcm.js"></script>
+    </body>
+</html>
