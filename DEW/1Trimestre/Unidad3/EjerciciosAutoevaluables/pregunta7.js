@@ -4,13 +4,18 @@ console.log(rankingPlayas(['Benijo', 'Papagayo'], [10,9]));
 
 
 function rankingPlayas(array1,array2){
-    const ranking = [];
+    const ranking = array1.map((nombre, index) => ({
+        nombre: nombre,
+        puntuacion: array2[index]
+    }));
 
-    for(let i=0; i<array1.length; i++){
-        ranking.push(array2[i]);
+    ranking.sort((a, b) => b.puntuacion - a.puntuacion);
+
+    const resultado = [];
+
+    for (let i = 0; i < ranking.length; i++) {
+        resultado.push(ranking[i].nombre);
     }
 
-    ranking.sort();
-
-    return ranking;
+    return resultado;
 }
