@@ -1,0 +1,110 @@
+header{
+    margin-left: 5%;    
+    margin-right: 5%;
+}
+
+hr{
+    margin-left: -10%;    
+    margin-right: -10%;
+    border: 0.5px solid #D9D9D9;
+}
+
+.upperHeader ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    font-size: 13px;
+}
+
+.upperHeader ul li {
+    margin-right: 10px;
+    color: #405009;
+    cursor: pointer;
+}
+
+.upperHeader ul li.info {
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    color:#6C851B;
+}
+
+.upperHeader ul li.number {
+    font-weight: bold;
+    margin-left: -10px;
+    color:#6C851B;
+}
+
+.upperHeader ul li select{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.centerHeader{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centerHeader img{
+    height: 110px;
+    margin-left: 2.3%;
+    margin-top: 10px;
+}
+
+.centerHeader .searchBox{
+    margin-left: auto;
+    display: flex;
+    margin-left: 13%;
+    border: 2px solid #405009;
+    border-radius: 5px;
+    padding: 2px;
+    width: 750px;
+}
+
+.centerHeader .searchBox input{
+    height: 30px;
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-style: italic;
+    color: #E8E4DD;
+}
+
+.centerHeader .searchBox button{
+    height: 34px;
+    width: 80px;
+    margin-left: 5px;
+    background-color: #6C851B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.centerHeader button{
+    margin-left: 300px;
+    width: 200px;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 3px 2px 5px #D9D9D9;
+    border: none;
+    color:#6C851B;
+}
+
+.lowerHeader ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.lowerHeader ul li {
+    margin-right: 20px;
+    color: #405009;
+    cursor: pointer;
+}

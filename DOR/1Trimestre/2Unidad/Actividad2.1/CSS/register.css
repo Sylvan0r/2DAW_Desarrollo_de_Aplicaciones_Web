@@ -1,0 +1,64 @@
+@font-face{
+    font-family: 'Tan';
+    src: url('../fonts/TAN-Angleton-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-VariableFont_wght.ttf');
+}
+
+body{
+    margin-top: 5%;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+    width: 200px;
+    height: 200px;
+}
+
+h1{
+    text-align: center;
+    font-family: Tan;
+    margin-bottom: 50px;
+}
+
+input{
+    margin: 10px 0;
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: Montserrat;
+}
+
+.form{
+    display:grid;
+    grid-template-columns: auto auto;
+    align-content: center;
+    justify-content: center;
+}
+
+button{
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #405009;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 70px;
+    font-family: Montserrat;
+}
