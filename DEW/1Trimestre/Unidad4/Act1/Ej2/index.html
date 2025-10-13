@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 2</title>
+    </head>
+    <body>
+        <h1>30</h1>
+
+        <script>
+            let seconds = 30;
+            const h1 = document.querySelector("h1");
+
+            const interval = setInterval(() => {
+                seconds--;
+                h1.textContent = seconds;
+            },1000);
+
+            setTimeout(() => {
+                alert("Han pasado 30 segundos");
+                close();
+            }, 30000);
+        </script>
+    </body>
+</html>

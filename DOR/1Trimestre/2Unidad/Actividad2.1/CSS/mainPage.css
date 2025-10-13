@@ -60,6 +60,7 @@ hr{
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .centerHeader img{
@@ -171,17 +172,19 @@ main .Banner #textBanner{
     display: block;
 }
 
+main .Banner #textBanner h2{
+    color: #B8B0A5;
+}
 
-
-main .Banner h1{
+main .Banner #supText{
     color: black;
-    font-size: 50px;
-    width: 500px;
+    font-size: 25px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 60px;
     font-family: 'Montserrat';
     text-align: center;
-    
+    line-height: 20px;
 }
 
 main .Banner h2{
@@ -201,7 +204,6 @@ main .Banner #emailInput{
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
-    background-color: white;
     width: 300px;
     padding: 15px;
     border-radius: 50px;
@@ -214,15 +216,204 @@ main .Banner #emailInput input{
     font-style: italic;
     color: #E8E4DD;
     padding-left: 10px;
+    height: 47px;
+    width: 500px;
+    margin-right: -20px;
+    border-radius: 50px;
 }
 
-/* !! FALTA HACER ESTO DE AQUI */
 main .Banner #emailInput button{
     background-color: #6C851B;
     color: white;
     border: none;
     border-radius: 50px;    
     margin-left: 10px;
-    padding: 10px 20px 10px 20px;
-    cursor: pointer;    
+    cursor: pointer;  
+    margin-left: -20px;  
+    width: 200px;
+}
+
+.productsZone{
+    width: 95%;
+    display: flex;
+    flex: 1;    
+}
+
+.productsZone #productsUpper {
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 40px;
+    margin-right: auto;
+}
+
+.productsZone #productsUpper h1 {
+    font-size: 26px;
+    color: #333;
+    margin-top: auto;
+}
+
+.productsZone #productsUpper ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-right: auto;
+}
+
+.productsZone #productsUpper ul li {
+    margin-right: auto;
+}
+
+.productsZone #categoryBar {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    font-family: 'Montserrat';
+    padding: 20px;
+    margin-left: auto;
+    margin-top: 20%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.productsZone #categoryBar h3 {
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.productsZone #categoryBar hr {
+    display: none; 
+}
+
+.productsZone #categoryBar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.productsZone #categoryBar ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    border: 0.5px solid #D9D9D9;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.productsZone #categoryBar ul li span {
+    background-color: #eaf6ec;
+    color: #405009;
+    padding: 2px 10px;
+    font-size: 13px;
+    border-radius: 50px;
+}
+
+.productsZone #tagsBar {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    font-family: 'Montserrat';
+    padding: 20px;
+    margin-left: auto;
+    margin-top: 20%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.productsZone #tagsBar h3 {
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.productsZone #tagsBar hr {
+    display: none; 
+}
+
+
+
+.productsZone #content{
+    display: block;
+    width: 300px;
+    border: 0.5px solid #D9D9D9;
+    height: 500px;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    margin-left: 3%;
+    text-align: center;
+}
+
+.productsZone #content #product #discount{
+    background-color: #405009;
+    width: 70px;
+    height: 30px;
+    margin-top: auto;
+    border-radius: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+.productsZone #content #product img{
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}  
+
+.productsZone #content #product #text{
+    text-align: left;
+    margin-left: 7%;
+    color: #D9D9D9;
+}
+
+.productsZone #content #product #text h2{
+    color:black
+}
+
+.productsZone #content #product #pricePos{
+    display: inline-flex;
+}
+
+.productsZone #content #product #pricePos button{
+    height: 20px;
+    margin-top: 10px;
+    display: inline-flex;
+    background-color: #ADC274;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.productsZone #content #product #pricePos button img{
+    width: 10px;
+    height: 10px;
+}
+
+.productsZone #content #product #price{
+    color: #405009;
+    text-decoration: underline;
+}
+
+.productsZone #content #product #price #oldPrice{
+    color:#D9D9D9;
+    margin: 10px;
+    text-decoration: line-through;
+    font-size: 16px;
+}
+
+.productsZone #content #product{
+    display: block;
+}
+
+.productsZone #content #product #origin{
+    color: #405009;
 }

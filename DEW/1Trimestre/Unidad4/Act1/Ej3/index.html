@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 3</title>
+        <style>
+            body{
+                display:inline-flex;
+            }
+
+            .work{
+                display: table;
+                text-align: center;
+            }
+
+            .rest{
+                margin-left: 20px;
+                display: table;
+                text-align: center;
+            }            
+        </style>
+    </head>
+    <body>
+        <div class="work">
+            <h1>Trabajo</h1>
+            <input type="number" id="time">
+            <h1 id="num"></h1>
+            <button id="Temp">Iniciar</button>
+        </div>
+
+        <div class="rest">
+            <h1>Descanso</h1>
+            <input type="number" id="timeDesc">
+            <h1 id="num2"></h1>
+            <button id="Rest">Iniciar</button>
+        </div>
+
+        <script>
+            let inp = document.getElementById("time");
+            let inp2 = document.getElementById("timeDesc");
+            const workTemp = document.getElementById("num");
+            const restTemp = document.getElementById("num2");
+            const button1 = document.getElementById("Temp");
+            const button2 = document.getElementById("Rest");
+
+
+            button1.addEventListener("click", () => {
+                inp.style.display = "none";
+                let seconds = inp.value;
+                let seconds2 = seconds;                
+                setInterval(() => {
+                    if(seconds>0){
+                        seconds--;
+                        workTemp.textContent = seconds;
+                    }
+                }, 1000);
+
+                setTimeout(() => {
+                    alert("Han pasado "+seconds2+" segundos");
+                    location.reload();
+                }, seconds2 * 1010);                                                    
+            });
+            
+            
+            button2.addEventListener("click", () => {
+                inp2.style.display = "none";
+                let seconds = inp2.value;
+                let seconds2 = seconds;                
+                setInterval(() => {
+                    if(seconds>0){
+                        seconds--;
+                        restTemp.textContent = seconds;
+                    }
+                }, 1000);
+
+                setTimeout(() => {
+                    alert("Han pasado "+seconds2+" segundos");
+                    location.reload();
+                }, seconds2 * 1010);                                                    
+            });
+        </script>
+    </body>
+</html>

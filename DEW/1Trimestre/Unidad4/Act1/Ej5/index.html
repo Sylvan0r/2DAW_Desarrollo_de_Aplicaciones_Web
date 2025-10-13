@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contador de Visitas</title>
+    </head>
+    
+    <body>
+
+        <h1>Visitas: </h1>
+        <p id="contador">0</p>
+
+        <script>
+            const claveLocalStorage = "";
+
+            let visitas = parseInt(localStorage.getItem(claveLocalStorage));
+
+            visitas++;
+
+            localStorage.setItem(claveLocalStorage, visitas);
+
+            document.getElementById('contador').textContent = visitas;
+        </script>
+    </body>
+</html>

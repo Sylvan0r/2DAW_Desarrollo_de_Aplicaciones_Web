@@ -1,0 +1,22 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Ejericio 4</title>
+    </head>
+    <body>
+        <script>
+            function mostrarRecordatorio() {
+                const respuesta = confirm("¿Quieres continuar recibiendo recordatorios?");
+
+                if (respuesta) {
+                    console.log("Recordatorio aceptado.");
+                } else {
+                    clearInterval(intervalID);
+                    alert("Recordatorio anulado.");
+                }
+            }
+
+            intervalID = setInterval(mostrarRecordatorio, 5000);
+        </script>
+    </body>
+</html>
