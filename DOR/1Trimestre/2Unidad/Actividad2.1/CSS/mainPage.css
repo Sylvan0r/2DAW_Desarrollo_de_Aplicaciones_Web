@@ -13,6 +13,10 @@
     src: url('../FONTS/PortobestoCapsRegular.otf');
 }
 
+*{
+    font-family: "Montserrat";
+}
+
 header{
     margin-left: 5%;    
     margin-right: 5%;
@@ -56,6 +60,7 @@ hr{
     cursor: pointer;
 }
 
+/* ===== Estilos base existentes ===== */
 .centerHeader{
     display: inline-flex;
     align-items: center;
@@ -65,18 +70,19 @@ hr{
 
 .centerHeader img{
     height: 110px;
-    margin-left: 2.3%;
     margin-top: 10px;
+    margin-right: auto;
+    margin-left: 100px;
 }
 
 .centerHeader .searchBox{
-    margin-left: auto;
     display: flex;
-    margin-left: 13%;
+    margin-right: auto;
     border: 2px solid #405009;
     border-radius: 5px;
     padding: 2px;
-    width: 750px;
+    width: 850px;
+    margin-left: 70px;
 }
 
 .centerHeader .searchBox input{
@@ -101,7 +107,7 @@ hr{
 }
 
 .centerHeader button{
-    margin-left: 300px;
+    margin-left: 100px;
     width: 200px;
     padding: 5px;
     background-color: white;
@@ -110,13 +116,72 @@ hr{
     color:#6C851B;
 }
 
+.centerHeader i{
+    font-size: 15px;
+    color:#333;
+    padding: 20px;
+}
+
+.icon-badge {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    gap: 5px; 
+    font-size: 13px; 
+}
+
+.icon-badge i {
+    position: relative;
+    font-size: 18px;
+    color: #333;
+}
+
+.icon-badge .badge {
+    position: absolute;
+    top: 0.2cm;     
+    right: 1.7cm;
+    background-color: #6C851B;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;  
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.icon-badge .badge3 {
+    position: absolute;
+    top: 0.2cm;     
+    right: 0.9cm;
+    background-color: #6C851B;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;   
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.icon-badge .label {
+    font-size: 13px;
+    color: #333;
+}
+
 .lowerHeader ul {
     display: flex;
     list-style: none;
-    flex-wrap: wrap;
     font-size: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
+    align-items: center;
 }
 
 .lowerHeader ul li {
@@ -150,10 +215,36 @@ hr{
     cursor: pointer;
 }
 
-/* !! FALTA HACER ESTO DE AQUI */
-.lowerHeader ul li#twentyFourSeven{
-    margin-left: auto;
+#twentyFourSeven {
+    display: flex;
+    align-items: center; 
+    gap: 12px;           
+    list-style: none;  
+    margin-left: auto;  
 }
+
+#twentyFourSeven i {
+    font-size: 40px;    
+    color: #6C851B;      
+}
+
+#twentyFourSeven .contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+#twentyFourSeven .phone-number {
+    font-size: 20px;     
+    font-weight: bold;
+    margin: 0;
+}
+
+#twentyFourSeven .hours {
+    font-size: 14px;     
+    margin: 0;
+    color: #333;
+}
+
 
 main .Banner{
     height: 600px;    
@@ -440,7 +531,7 @@ main .Banner #emailInput button{
     padding-top: 5%;
     padding-left: 5%;
     font-size: 50px;
-    width: 600px;
+    width: 700px;
 }
 
 .inferiorZone h2{
@@ -486,14 +577,23 @@ main .Banner #emailInput button{
 
 .categoriesZone #upperZone{
     display: flex;
+    align-items: center;
 }
 
 .categoriesZone #upperZone #buttons{
-    margin-left: auto;
+    margin-left: 66%;
+}
+
+.categoriesZone #upperZone #buttons button{
+    border-radius: 200px;
+    color: #333;
+    border: none;
+    height: 30px;
+    width: 30px;
 }
 
 .categoriesZone p {
-    margin-left: 5%;
+    margin-left: 2%;
     color:#6C851B;
 }
 
@@ -586,4 +686,30 @@ main .Banner #emailInput button{
     margin-top: 15%;
     width: 300px;
     height: 200px;
+}
+
+footer hr{
+    margin-left: -10%;    
+    margin-right: -6%;
+    width: 110%;
+}
+
+footer #containter{
+    display: flex;
+}
+
+footer #left{
+    display: flex;
+    text-align: left;
+}
+
+footer #center{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer #right{
+    display: flex;
+    align-items: center;
 }
