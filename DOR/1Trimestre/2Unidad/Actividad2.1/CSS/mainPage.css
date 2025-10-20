@@ -60,7 +60,6 @@ hr{
     cursor: pointer;
 }
 
-/* ===== Estilos base existentes ===== */
 .centerHeader{
     display: inline-flex;
     align-items: center;
@@ -440,6 +439,7 @@ main .Banner #emailInput button{
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(100px, auto);    
     margin-left: 5%; 
+    gap: 20px;
 }
 
 .productsZone #content #product{
@@ -447,9 +447,13 @@ main .Banner #emailInput button{
     border-radius: 10px;
     text-align: center;
     width: 250px;
-    height: 470px;
+    height: 500px;
     font-family: 'Montserrat';
-    margin-bottom: 5%;
+    color: white;
+}
+
+.productsZone #content #product #discountBox{
+    display: flex;
 }
 
 .productsZone #content #product #discount{
@@ -458,7 +462,23 @@ main .Banner #emailInput button{
     height: 30px;
     margin-top: auto;
     border-radius: 10px 0px 10px 0px;
-    text-align: center;
+}
+
+.productsZone #content #product #discount2{
+    background-color: #C2BE74;
+    width: 70px;
+    height: 30px;
+    margin-top: auto;
+    border-radius: 10px 0px 10px 0px;
+}
+
+.productsZone #content #product #Sale{
+    background-color: #ADC274;
+    width: 70px;
+    height: 30px;
+    margin-top: auto;
+    margin-left: auto;
+    border-radius: 0px 10px 0px 10px;
 }
 
 .productsZone #content #product img{
@@ -488,6 +508,7 @@ main .Banner #emailInput button{
     background-color: #ADC274;
     padding: 15px;
     border-radius: 10px;
+    align-items: center;
 }
 
 .productsZone #content #product #pricePos button img{
@@ -720,8 +741,8 @@ footer #center {
 
 footer #center #container {
   display: grid;
-  grid-template-columns: auto 1fr; /* corregido */
-  text-align: left; /* para que texto no quede centrado */
+  grid-template-columns: auto 1fr; 
+  text-align: left; 
   align-items: center;
   gap: 10px;
 }

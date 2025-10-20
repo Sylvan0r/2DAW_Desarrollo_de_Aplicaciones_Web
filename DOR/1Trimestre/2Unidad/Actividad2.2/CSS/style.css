@@ -1,0 +1,145 @@
+body{
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(87, 27, 27));
+    background-size: 200% 200%;
+    animation: fondoAnimado 3s ease infinite;
+}
+
+header{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: rgb(87, 27, 27);
+    border: 5px solid black;
+}
+
+header p{
+    text-align: center;
+    color: white;
+}
+
+header #selec:hover{
+    color: yellow;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+main{
+    display: grid;
+}
+
+main img{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    width: 700px;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px 60px;
+}
+
+#sectionSurvivors{
+    display: block;
+    background-color: rgba(29, 126, 222, 0.02);
+    border: 1px solid black;
+    color: white;
+    border-radius: 20px;
+}
+
+#survivorIcon{
+    width: 100px;
+    height: 100px;
+    margin-top: -20px;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../IMG/survivor_icon.webp");
+}
+
+#survivorIcon p{
+    grid-template-columns: subgrid;
+}
+
+#sectionExecutioners{
+    display: grid;
+    background-color: rgba(222, 29, 29, 0.063);
+    border: 1px solid black;
+    color: white;
+    border-radius: 20px;
+}
+
+#exeIcon{
+    display: grid;
+    width: 100px;
+    height: 100px;
+    margin-top: -20px;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../IMG/executioners_icon.webp");
+}
+
+#exeIcon p{
+    grid-template-columns: subgrid;
+}
+
+#mapIcon{
+    width: 80px;
+    height: 80px;
+    margin-top: -15px;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../IMG/map_icon.webp");
+}
+
+#mapIcon p{
+    grid-template-columns: subgrid;
+}
+
+#sectionMaps{
+    display: block;
+    background-color: rgba(209, 222, 29, 0.063);
+    border: 1px solid black;
+    color: white;
+    border-radius: 20px;
+}
+
+#sectionExtras{
+    background-color: rgba(29, 222, 106, 0.063);
+    border: 1px solid black;
+    color: white;
+    border-radius: 20px;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#extraIcon{
+    width: 80px;
+    height: 80px;
+    margin-top: -15px;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../IMG/LORE.webp");
+}
+
+#extraIcon p{
+    grid-template-columns: subgrid;
+}
+
+@keyframes fondoAnimado {
+    0%{
+        background-position:0% 0%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 00%;
+    }
+}
