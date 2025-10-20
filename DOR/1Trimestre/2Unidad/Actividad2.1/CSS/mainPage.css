@@ -688,6 +688,11 @@ main .Banner #emailInput button{
     height: 200px;
 }
 
+footer{
+    padding-top: 80px;
+    color: #B8B0A5;
+}
+
 footer hr{
     margin-left: -10%;    
     margin-right: -6%;
@@ -699,17 +704,67 @@ footer #containter{
 }
 
 footer #left{
-    display: flex;
+    display: block;
     text-align: left;
+    margin-left: 4%;
 }
 
-footer #center{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+footer #center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  gap: 30px;
+  line-height: 5px;
+}
+
+footer #center #container {
+  display: grid;
+  grid-template-columns: auto 1fr; /* corregido */
+  text-align: left; /* para que texto no quede centrado */
+  align-items: center;
+  gap: 10px;
+}
+
+footer #center #container h2 {
+  color: #6C851B;
+  font-size: 20px;
+}
+
+footer #center #container p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+footer #center #container i {
+  font-size: 24px;
+  color: #6C851B;
 }
 
 footer #right{
     display: flex;
     align-items: center;
+    margin-right: 4%;
+    width: 100%;
+    line-height: 1px;
+}
+
+footer #right p{
+    font-weight: bold;
+    color: black;
+    margin-right: 10px;
+}
+
+footer #right #discount p{
+    color: #B8B0A5;
+}
+
+footer #right i{
+    background-color:#6C851B;
+    border-radius: 50px;    
+    color: white;
+    width: 30px;
+    height: 30px;
+    text-align: center;
 }
