@@ -14,12 +14,14 @@ header{
 header p{
     text-align: center;
     color: white;
+    transition: ease-in-out 0.3s;
 }
 
 header #selec:hover{
     color: yellow;
     font-weight: bold;
     cursor: pointer;
+    transform: scale(1.05);
 }
 
 main{
@@ -29,7 +31,7 @@ main{
 main img{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
+    margin-top: 30px;
     width: 700px;
 }
 
@@ -48,20 +50,38 @@ main img{
     border: 1px solid black;
     color: white;
     border-radius: 20px;
+    transition: ease-in-out 0.3s; 
+}
+
+#sectionSurvivors:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionSurvivors:hover #extra{
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 #survivorIcon{
+    grid-template-columns: subgrid;
     width: 100px;
     height: 100px;
-    margin-top: -20px;
+    margin-top: -10px;
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
     background-image: url("../IMG/survivor_icon.webp");
 }
 
-#survivorIcon p{
+#sectionSurvivors #extra{
     grid-template-columns: subgrid;
+    opacity: 0;
+    transition: opacity 0.3s; 
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
 }
 
 #sectionExecutioners{
@@ -70,35 +90,59 @@ main img{
     border: 1px solid black;
     color: white;
     border-radius: 20px;
+    transition: ease-in-out 0.3s; 
+}
+
+#sectionExecutioners:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionExecutioners:hover #extra{
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 #exeIcon{
-    display: grid;
+    grid-template-columns: subgrid;
     width: 100px;
     height: 100px;
-    margin-top: -20px;
+    margin-top: -10px;
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
     background-image: url("../IMG/executioners_icon.webp");
 }
 
-#exeIcon p{
+#sectionExecutioners #extra{
     grid-template-columns: subgrid;
+    opacity: 0;
+    transition: opacity 0.3s; 
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
 }
 
 #mapIcon{
-    width: 80px;
-    height: 80px;
-    margin-top: -15px;
+    display: subgrid;
+    width: 100px;
+    height: 100px;
+    margin-top: -10px;
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
     background-image: url("../IMG/map_icon.webp");
 }
 
-#mapIcon p{
+#sectionExecutioners #extra{
     grid-template-columns: subgrid;
+    opacity: 0;
+    transition: opacity 0.3s; 
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
 }
 
 #sectionMaps{
@@ -107,6 +151,27 @@ main img{
     border: 1px solid black;
     color: white;
     border-radius: 20px;
+    transition: ease-in-out 0.3s; 
+}
+
+#sectionMaps:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionMaps:hover #extra{
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+#sectionMaps #extra{
+    grid-template-columns: subgrid;
+    opacity: 0;
+    transition: opacity 0.3s; 
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
 }
 
 #sectionExtras{
@@ -116,20 +181,38 @@ main img{
     border-radius: 20px;
     grid-column: 2;
     grid-row: 2;
+    transition: ease-in-out 0.3s; 
+}
+
+#sectionExtras:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionExtras:hover #extra{
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 #extraIcon{
-    width: 80px;
-    height: 80px;
-    margin-top: -15px;
+    grid-template-columns: subgrid;
+    width: 100px;
+    height: 100px;
+    margin-top: -10px;
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
     background-image: url("../IMG/LORE.webp");
 }
 
-#extraIcon p{
+#sectionExtras #extra{
     grid-template-columns: subgrid;
+    opacity: 0;
+    transition: opacity 0.3s; 
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
 }
 
 @keyframes fondoAnimado {
