@@ -22,6 +22,10 @@ header{
     margin-right: 5%;
 }
 
+h1{
+    font-weight: 500;
+}
+
 hr{
     margin-left: -10%;    
     margin-right: -6%;
@@ -33,6 +37,7 @@ hr{
     list-style: none;
     flex-wrap: wrap;
     font-size: 13px;
+    margin-right: 5%;
 }
 
 .upperHeader ul li {
@@ -118,7 +123,7 @@ hr{
 .centerHeader i{
     font-size: 15px;
     color:#333;
-    padding: 20px;
+    padding: 15px;
 }
 
 .icon-badge {
@@ -183,11 +188,15 @@ hr{
     align-items: center;
 }
 
-.lowerHeader ul li {
-    margin-right: 60px;
-    cursor: pointer;
+.lowerHeader ul li select{
+    font-weight: bold;
 }
 
+.lowerHeader ul li {
+    margin-right: 50px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
 .lowerHeader ul li select#categoriesSelect{
     border: none;
@@ -221,6 +230,7 @@ hr{
     gap: 12px;           
     list-style: none;  
     margin-left: auto;  
+    font-weight: normal;
 }
 
 #twentyFourSeven i {
@@ -247,7 +257,7 @@ hr{
 
 
 main .Banner{
-    height: 600px;    
+    height: 550px;    
     margin-top: 20px;
     background-image: url("../IMG/3d0da7fa-4d4c-4b7d-9e28-f4556c27679d.png");
     background-repeat: no-repeat;
@@ -263,8 +273,14 @@ main .Banner #textBanner{
     display: block;
 }
 
+main .Banner #textBanner h1{
+    font-weight: 600;
+    font-size: 65px;
+}
+
 main .Banner #textBanner h2{
     color: #B8B0A5;
+    margin-top: 10px;
 }
 
 main .Banner #supText{
@@ -343,6 +359,7 @@ main .Banner #emailInput button{
     font-size: 26px;
     color: #333;
     margin-top: auto;
+    font-weight: 700;
 }
 
 .productsZone #productsUpper ul {
@@ -616,6 +633,10 @@ main .Banner #emailInput button{
 .categoriesZone #upperZone{
     display: flex;
     align-items: center;
+}
+
+.categoriesZone #upperZone h1{
+    font-weight: 600;
 }
 
 .categoriesZone #upperZone #buttons{

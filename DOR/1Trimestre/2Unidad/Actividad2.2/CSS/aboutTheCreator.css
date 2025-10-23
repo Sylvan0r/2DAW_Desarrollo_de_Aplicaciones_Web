@@ -1,0 +1,40 @@
+/* Animacion del fondo que es solo el gradiante subiendo y bajando */
+body{
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(87, 27, 27));
+    background-size: 400% 400%;
+    animation: fondoAnimado 10s ease infinite;
+}
+
+/* Seccion del main */
+main{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: center;
+    margin-top: 10%;
+}
+
+main img{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100%;
+}
+
+main p{
+    font-size: 25px;
+    color: white;
+    margin-left: -20px;
+}
+
+/* Animacion del fondo */
+@keyframes fondoAnimado {
+    0%{
+        background-position:0% 0%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 00%;
+    }
+}

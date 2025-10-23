@@ -1,0 +1,81 @@
+/* Animacion del fondo que es solo el gradiante subiendo y bajando */
+body{
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(87, 27, 27));
+    background-size: 300% 300%;
+    animation: fondoAnimado 3s ease infinite;
+}
+
+/* Seccion del header que se encarga de la barra superior */
+header nav{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: rgb(87, 27, 27);
+    border: 5px solid black;
+}
+
+header nav p{
+    text-align: center;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+
+header nav #selec:hover{ /* Animaciones la pasar por encima de los textos */
+    color: yellow;
+    font-weight: bold;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Seccion del main */
+main{
+    display: grid;
+    justify-items: center;
+    margin-top: 50px;
+    grid-template-columns: 500px 1fr;
+    align-items: center;
+}
+
+main iframe{
+    width: 90%;
+    height: 700px;
+    margin-top: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+main #aboutUsButtons #buttonsContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+main #aboutUsButtons button{
+    width: 200px;
+    height: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(87, 27, 27);
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    transition: ease-in-out 0.3s;
+}
+
+main #aboutUsButtons button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Animacion del fondo */
+@keyframes fondoAnimado {
+    0%{
+        background-position:0% 0%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 00%;
+    }
+}

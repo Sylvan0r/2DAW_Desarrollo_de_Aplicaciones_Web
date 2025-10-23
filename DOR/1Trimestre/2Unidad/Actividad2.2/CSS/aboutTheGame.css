@@ -1,0 +1,60 @@
+/* Animacion del fondo que es solo el gradiante subiendo y bajando */
+body{
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(87, 27, 27));
+    background-size: 400% 400%;
+    animation: fondoAnimado 10s ease infinite;
+}
+
+/* Seccion del header que se encarga de la barra superior */
+header nav{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: rgb(87, 27, 27);
+    border: 5px solid black;
+}
+
+header nav p{
+    text-align: center;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+
+header nav #selec:hover{ /* Animaciones la pasar por encima de los textos */
+    color: yellow;
+    font-weight: bold;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Seccion del main */
+main{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: center;
+    margin-top: 10%;
+}
+
+main img{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main #text p{
+    font-size: 25px;
+    color: white;
+    margin-left: -20px;
+}
+
+/* Animacion del fondo */
+@keyframes fondoAnimado {
+    0%{
+        background-position:0% 0%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 00%;
+    }
+}

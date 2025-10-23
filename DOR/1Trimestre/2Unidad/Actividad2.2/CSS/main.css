@@ -1,29 +1,32 @@
+/* Animacion del fondo que es solo el gradiante subiendo y bajando */
 body{
     background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(87, 27, 27));
     background-size: 200% 200%;
     animation: fondoAnimado 3s ease infinite;
 }
 
-header{
+/* Seccion del header que se encarga de la barra superior */
+header nav{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     background-color: rgb(87, 27, 27);
     border: 5px solid black;
 }
 
-header p{
+header nav p{
     text-align: center;
     color: white;
     transition: ease-in-out 0.3s;
 }
 
-header #selec:hover{
+header nav #selec:hover{ /* Animaciones la pasar por encima de los textos */
     color: yellow;
     font-weight: bold;
     cursor: pointer;
     transform: scale(1.05);
 }
 
+/* Seccion del main */
 main{
     display: grid;
 }
@@ -35,6 +38,7 @@ main img{
     width: 700px;
 }
 
+/* Seccion de los contenidos inferiores del logo */
 .content{
     display: grid;
     grid-template-columns: repeat(3, 300px);
@@ -44,23 +48,14 @@ main img{
     gap: 20px 60px;
 }
 
+/* Seccion de los supervivientes */
 #sectionSurvivors{
-    display: block;
+    display: grid;
     background-color: rgba(29, 126, 222, 0.02);
     border: 1px solid black;
     color: white;
     border-radius: 20px;
     transition: ease-in-out 0.3s; 
-}
-
-#sectionSurvivors:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-}
-
-#sectionSurvivors:hover #extra{
-    transform: scale(1.05);
-    opacity: 1;
 }
 
 #survivorIcon{
@@ -71,7 +66,7 @@ main img{
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
-    background-image: url("../IMG/survivor_icon.webp");
+    background-image: url("../ICONS/survivor_icon.webp");
 }
 
 #sectionSurvivors #extra{
@@ -84,6 +79,17 @@ main img{
     z-index: 1;
 }
 
+#sectionSurvivors:hover{ /* Animacion al pasar por encima */
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionSurvivors:hover #extra{ /* Animacion del texto extra al pasar por encima */
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Seccion de los exe */
 #sectionExecutioners{
     display: grid;
     background-color: rgba(222, 29, 29, 0.063);
@@ -91,16 +97,6 @@ main img{
     color: white;
     border-radius: 20px;
     transition: ease-in-out 0.3s; 
-}
-
-#sectionExecutioners:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-}
-
-#sectionExecutioners:hover #extra{
-    transform: scale(1.05);
-    opacity: 1;
 }
 
 #exeIcon{
@@ -111,7 +107,7 @@ main img{
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
-    background-image: url("../IMG/executioners_icon.webp");
+    background-image: url("../ICONS/executioners_icon.webp");
 }
 
 #sectionExecutioners #extra{
@@ -122,6 +118,26 @@ main img{
     text-align: center;
     border-radius: 6px;
     z-index: 1;
+}
+
+#sectionExecutioners:hover{ /* Animacion al pasar por encima */
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionExecutioners:hover #extra{ /* Animacion del texto extra al pasar por encima */
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Seccion de los mapas */
+#sectionMaps{
+    display: grid;
+    background-color: rgba(209, 222, 29, 0.063);
+    border: 1px solid black;
+    color: white;
+    border-radius: 20px;
+    transition: ease-in-out 0.3s; 
 }
 
 #mapIcon{
@@ -132,36 +148,7 @@ main img{
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
-    background-image: url("../IMG/map_icon.webp");
-}
-
-#sectionExecutioners #extra{
-    grid-template-columns: subgrid;
-    opacity: 0;
-    transition: opacity 0.3s; 
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-#sectionMaps{
-    display: block;
-    background-color: rgba(209, 222, 29, 0.063);
-    border: 1px solid black;
-    color: white;
-    border-radius: 20px;
-    transition: ease-in-out 0.3s; 
-}
-
-#sectionMaps:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-}
-
-#sectionMaps:hover #extra{
-    transform: scale(1.05);
-    opacity: 1;
+    background-image: url("../ICONS/map_icon.webp");
 }
 
 #sectionMaps #extra{
@@ -174,7 +161,19 @@ main img{
     z-index: 1;
 }
 
+#sectionMaps:hover{ /* Animacion al pasar por encima */
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionMaps:hover #extra{ /* Animacion del texto extra al pasar por encima */
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Seccion de los extras */
 #sectionExtras{
+    display: grid;
     background-color: rgba(29, 222, 106, 0.063);
     border: 1px solid black;
     color: white;
@@ -182,16 +181,6 @@ main img{
     grid-column: 2;
     grid-row: 2;
     transition: ease-in-out 0.3s; 
-}
-
-#sectionExtras:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-}
-
-#sectionExtras:hover #extra{
-    transform: scale(1.05);
-    opacity: 1;
 }
 
 #extraIcon{
@@ -202,7 +191,7 @@ main img{
     background-size: cover;
     margin-left: auto;
     margin-right: auto;
-    background-image: url("../IMG/LORE.webp");
+    background-image: url("../ICONS/LORE.webp");
 }
 
 #sectionExtras #extra{
@@ -215,6 +204,17 @@ main img{
     z-index: 1;
 }
 
+#sectionExtras:hover{ /* Animacion al pasar por encima */
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#sectionExtras:hover #extra{ /* Animacion del texto extra al pasar por encima */
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Animacion del fondo */
 @keyframes fondoAnimado {
     0%{
         background-position:0% 0%;
