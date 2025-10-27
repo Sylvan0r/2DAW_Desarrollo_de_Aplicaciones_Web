@@ -8,7 +8,7 @@ body{
 /* Seccion del header que se encarga de la barra superior */
 header nav{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     background-color: rgb(87, 27, 27);
     border: 5px solid black;
 }
@@ -17,6 +17,10 @@ header nav p{
     text-align: center;
     color: white;
     transition: ease-in-out 0.3s;
+}
+
+header nav a{
+    text-decoration: none;
 }
 
 header nav #selec:hover{ /* Animaciones la pasar por encima de los textos */
