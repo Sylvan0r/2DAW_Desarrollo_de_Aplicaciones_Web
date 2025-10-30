@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Distribucion y producto</title>
+    </head>
+    <body>
+        <main style="text-align: center;">
+            <form id="form" style="background-color: rgb(117, 198, 252); width: 20%; padding: 20px; border-radius: 50px; margin-left: auto; margin-right: auto;">
+                <p>Fecha de creación: </p>
+                <input type="date" id="date">
+                <p>Cocinero: </p>
+                <input type="text" id="chef" placeholder="WW$1234">
+                <p>Destinatario: </p>
+                <input type="text" id="consumer" placeholder="NM_alburquerque:1234">
+                <p>Gramos: </p>
+                <input type="number" id="weight" placeholder="100-5000">
+                <p>Numero de cuenta: </p>
+                <input type="text" id="numAccount">
+                <br><br>
+                <button type="submit">Enviar</button>
+            </form>
+            <hr>
+            <br>
+            <span id="error"></span>
+            <br>
+            <span id="show"></span>
+            <script src="JS/index.js"></script>
+        </main>
+    </body>
+</html>
