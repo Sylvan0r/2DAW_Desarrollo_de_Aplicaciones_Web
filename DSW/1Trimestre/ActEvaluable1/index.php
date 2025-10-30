@@ -1,6 +1,27 @@
 <?php
     session_start();
+    include "PHP/connection.php"; 
+
+    if (!isset($_SESSION["user"]) && isset($_COOKIE["remember_token"])) {
+        $token = $_COOKIE["remember_token"];
+
+        $stmt = $conn->prepare("SELECT Nombre, Gmail FROM users WHERE remember_token = ?");
+        $stmt->bind_param("s", $token);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+
+            $_SESSION["user"] = $user["Nombre"];
+            $_SESSION["gmail"] = $user["Gmail"];
+            $_SESSION["exito"] = "Sesión restaurada automáticamente.";
+
+            setcookie("remember_token", $token, time() + (86400 * 7), "/", "", true, true);
+        }
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -10,36 +31,56 @@
     </head>
     <body>
         <!-- Botones de registro -->
-        <div class="top-right">
-            <h2>Tienda de juegos</h2>
-            <button onclick="register()">Registrar usuario</button>
-            <button onclick="login()">Iniciar sesion</button>
-            <!-- Boton de salir de sesion, se esconde cuando no hay sesion iniciada -->
-            <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): ?>
-                <button onclick="games()">Registrar juegos</button>
-            <?php endif; ?>                
-            <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): ?>
-                <button onclick="logout()">Cerrar sesión</button>
-            <?php endif; ?>                     
-        </div>
+         <header>
+            <div class="top-right">
+                <h2 class="top-left">Tienda de juegos</h2>
+                <input class="top-left" placeholder="Introducir nombre de juego" name="busquedajuegos" onkeyup="search(this.value)" onkeydown="search(this.value)">
+                    <?php if (!isset($_SESSION["user"])): ?>            
+                        <a href="PHP/RegisterUser/registerUser.php"><button>Registrar usuario</button></a>
+                        <a href="PHP/LoginUser/loginUser.php"><button>Iniciar sesion</button></a>
+                    <?php endif; ?>               
+                    <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): ?>
+                        <a href="PHP/Games/registerGame.php"><button>Registrar juegos</button></a>
+                    <?php endif; ?>               
+                <!-- Boton de salir de sesion, se esconde cuando no hay sesion iniciada -->           
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): 
+                    include "PHP/connection.php";
+                    $result = $conn->query("SELECT userImg FROM users where Gmail like '$_SESSION[gmail]'");
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<img onclick="show()" width="50" height="50" src="data:image/jpg;base64,' . base64_encode($row['userImg']) . '" alt="Carátula del juego">';                    
+                        }
+                    ?>           
+                    <div id="extraBut" style="display: none;">             
+                        <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): ?>
+                            <a href="PHP/User/userInfo.php"><button>Información usuario</button></a>
+                        <?php endif; ?>                        
+                        <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): ?>
+                            <a href="PHP\Games\gamesStats.php"><button>Estadisticas juegos</button></a>
+                        <?php endif; ?>
+                        <?php if (isset($_SESSION["user"]) && $_SESSION["user"] != ""): ?>
+                            <a href="PHP/User/logout.php"><button>Cerrar sesión</button></a>
+                        <?php endif; ?>                    
+                    </div>     
+                <?php endif; ?>                          
+            </div>
+        </header>
         
         <div>
-            <h2>Barra de busqueda</h2>
-            <input placeholder="Introducir nombre de juego" name="busquedajuegos" onkeyup="search(this.value)">
             <span id="showGames"></span>
         </div>   
-
-        <?php
-            include "PHP/Games/showGames.php";
-            showGames();
-        ?>   
-
+        <div id="test">
+            <?php
+                include "PHP/Games/showGames.php";
+                showGames();
+            ?>
+        </div>
         <!-- Funciones de los botones al ser pulsados -->         
         <script>
             $array = [];               
             function search(str) {
                 if (str == "") {
                     document.getElementById("showGames").innerHTML = "";
+                    document.getElementById("test").style.display = "flex";
                     return;
                 } else {
                     var xmlhttp = new XMLHttpRequest();
@@ -48,22 +89,20 @@
                             document.getElementById("showGames").innerHTML = this.responseText;                        
                         }
                     };
-                    xmlhttp.open("GET","PHP/searchGame.php?q="+str,true);
-                    xmlhttp.send();
+                    xmlhttp.open("GET","PHP/Games/searchGame.php?q="+str,true);
+                    xmlhttp.send();                  
+                    document.getElementById("test").style.display = "none";
                 }
-            }
-            function register(){
-                window.location.href = "PHP/RegisterUser/registerUser.php"
-            }
-            function login(){
-                window.location.href = "PHP/LoginUser/loginUser.php"                
-            }
-            function logout(){
-                window.location.href = "PHP/logout.php";
-            }                        
-            function games(){
-                window.location.href = "PHP/Games/registerGame.php"                
-            }
+            }    
+
+            function show(){
+                const extra = document.getElementById("extraBut");
+                if (extra.style.display === "block") {
+                    extra.style.display = "none";
+                } else {
+                    extra.style.display = "block";
+                }
+            }       
         </script>
 
         <!-- Sección de errores y exitos -->

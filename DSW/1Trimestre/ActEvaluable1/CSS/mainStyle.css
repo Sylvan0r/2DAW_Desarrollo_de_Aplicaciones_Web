@@ -6,9 +6,21 @@
 }
 
 /* ====== BODY Y ENCABEZADOS ====== */
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+button:hover{
+    transform: scale(1.05); 
+}
+
+body {    
     background-image: linear-gradient(135deg, #0066ff, #3399ff);
-    height: 100vh;
+    background-size: cover; /* o 100% 100% */
+    background-repeat: no-repeat;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,18 +28,27 @@ body {
     font-family: sans-serif;
 }
 
+
 h1 {
     color: white;
     font-size: 60px;
     text-shadow: 1px 1px 2px #2d3436;
     padding: 15px;
+    text-shadow: 0 0 10px #00bfff;
 }
 
 /* ====== BARRA SUPERIOR (botones login) ====== */
-.top-right {
+header {
     position: fixed;
     top: 0;
-    left: 0;
+    width: 100%;
+    height: 60px; 
+    background-color: #fff; 
+    z-index: 9999; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+.top-right {
     width: 100%;
     background-color: white;
     padding: 10px 20px;
@@ -35,7 +56,6 @@ h1 {
     justify-content: flex-end;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
 }
 
 .top-bar {
@@ -47,7 +67,26 @@ h1 {
 .top-left,
 .top-right {
     display: flex;
-    gap: 10px;
+}
+
+.top-left{
+    margin-right: auto;
+}
+
+/* Icono de usuario */
+.top-right img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px; 
+    border: 2px solid #007BFF; 
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 10px;
+    object-fit: cover; 
+}
+
+.top-right img:hover {
+    transform: scale(1.1); 
 }
 
 .top-right button {
@@ -60,10 +99,7 @@ h1 {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
-}
-
-.top-right button:hover {
-    background-color: #e0eaff;
+    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
 }
 
 /* ====== BOTONES GENERALES ====== */
@@ -78,7 +114,7 @@ button,
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-shadow: 1px 2px #2d3436;
+    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
@@ -139,6 +175,11 @@ textarea {
     height: 120px;
 }
 
+#checkbox{
+    display: flex;
+    color:white
+}
+
 /* ====== MENSAJES DE ESTADO ====== */
 .error,
 .exito {
@@ -163,10 +204,11 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
     padding: 50px 20px;
     width: 100%;
-    margin-top: 60px;
+    margin-bottom: auto;
+    margin-top: 40px;
+    gap: 20px;
 }
 
 .game-card {
@@ -200,7 +242,7 @@ textarea {
     color: white;
     font-size: 22px;
     margin-bottom: 5px;
-    text-shadow: 1px 1px 2px #2d3436;
+    text-shadow: 0 0 10px #00bfff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -257,4 +299,172 @@ textarea {
     display: flex;
     justify-content: center;
     gap: 20px;
+}
+
+/* ====== SECCIÓN DE INFORMACIÓN DEL USUARIO ====== */
+.user-info {
+    margin-top: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-width: 500px;
+    border-radius: 50px;
+    width: 90%;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+.user-info h1 {
+    font-size: 36px;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00bfff;
+    margin-bottom: 25px;
+}
+
+.user-info img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #00bfff55;
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.4);
+    margin-bottom: 20px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-info img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(0, 191, 255, 0.6);
+}
+
+.user-info h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin: 10px 0 5px;
+    text-shadow: 0 0 5px #00bfff;
+}
+
+.user-info p {
+    font-size: 18px;
+    color: #e0f7ff;
+    margin-bottom: 15px;
+    word-break: break-word;
+}
+
+.user-info a {
+    text-decoration: none;
+}
+
+.user-info button {
+    margin: 10px 5px;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
+}
+
+.user-info button:hover {
+    transform: translateY(-2px);
+}
+
+/* ====== ESTADÍSTICAS DE JUEGOS DEL USUARIO ====== */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ffffff33;
+    border-radius: 12px;
+    padding: 20px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+}
+
+.stat-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.stat-card h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #2d3436;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stat-card .game-image {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.stat-card .game-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.stat-card .game-image img:hover {
+    transform: scale(1.05);
+}
+
+.stat-card p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.stat-card progress {
+    width: 100%;
+    height: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 8px 0 15px;
+}
+
+.stat-card .btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
+}
+
+.stat-card .btn:hover {
+    background-color: #74b9ff;
+}
+
+/* Botón de volver */
+.stats-container + a > button {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: #0984e3;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.stats-container + a > button:hover {
+    background-color: #74b9ff;
 }
