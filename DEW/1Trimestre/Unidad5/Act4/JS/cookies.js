@@ -35,28 +35,32 @@ function validator() {
                         return true;
                     } else {
                         document.getElementById("error").innerHTML = "Error de número de cuenta (formato o control incorrecto)";
+                        increaseErrorCounter();
                         return false;
                     }
                 } else {
                     document.getElementById("error").innerHTML = "Error de peso";
+                    increaseErrorCounter();
                     return false;
                 }
             } else {
                 document.getElementById("error").innerHTML = "Error de consumidor o su formato";
+                increaseErrorCounter();
                 return false;
             }
         } else {
             document.getElementById("error").innerHTML = "Error de chef o su formato";
+            increaseErrorCounter();
             return false;
         }
     } else {
         document.getElementById("error").innerHTML = "Error de fecha";
+        increaseErrorCounter();
         return false;
     }
 }
 
 function validateUSAccount(account) {
-    // Formato general: LLDD-CCCCCCCCCCCC-DDDD
     const basePattern = /^([A-Z]{2})(\d{2})-(\d{12})-(\d{4})$/;
     const match = account.match(basePattern);
     if (!match) return false;
@@ -66,16 +70,13 @@ function validateUSAccount(account) {
     const accountDigits = match[3];
     const control = match[4];
 
-    // 1️⃣ Calcular la suma esperada de las dos letras (A=1, B=2, …, Z=26)
     const val1 = letters.charCodeAt(0) - 64;
     const val2 = letters.charCodeAt(1) - 64;
     const sumLetters = val1 + val2;
     const expectedSum = sumLetters.toString().padStart(2, "0");
 
-    // Comparar como cadenas (para conservar ceros a la izquierda)
     if (sumDigitsStr !== expectedSum) return false;
 
-    // 2️⃣ Calcular los dígitos de control
     const firstSix = accountDigits.substring(0, 6).split("").map(Number);
     const lastSix = accountDigits.substring(6, 12).split("").map(Number);
 
@@ -88,7 +89,6 @@ function validateUSAccount(account) {
 
     if (control !== expectedControl) return false;
 
-    // 3️⃣ Si todo correcto, mostrar sin guiones
     document.getElementById("numAccountFormatted").value =
         letters + sumDigitsStr + accountDigits + control;
 
@@ -115,7 +115,7 @@ function crear() {
 
 function show(datos) {
     let contenedor = document.getElementById("show");
-    contenedor.innerHTML = ""; // limpiar antes de volver a mostrar
+    contenedor.innerHTML = "";
     datos.forEach((item, index) => {
         contenedor.innerHTML += `
         <div>
@@ -129,4 +129,45 @@ function show(datos) {
         </div>
     `;
     });
+}
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1);
+        if (c.indexOf(cname) == 0) {
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
+}
+
+function increaseErrorCounter() {
+    let count = parseInt(getCookie("contadorErrores") || "0");
+    count++;
+    setCookie("contadorErrores", count, 7);
+    document.getElementById("contador").innerText = `Fallos: ${count}`;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    let count = parseInt(getCookie("contadorErrores") || "0");
+    document.getElementById("contador").innerText = `Fallos: ${count}`;
+});
+
+document.getElementById("resetCounter").addEventListener("click", resetCounter);
+
+function resetCounter(){
+    document.cookie = "contadorErrores=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setCookie("contadorErrores", 0, 7);
+    document.getElementById("contador").innerText = "Fallos: 0";
 }
