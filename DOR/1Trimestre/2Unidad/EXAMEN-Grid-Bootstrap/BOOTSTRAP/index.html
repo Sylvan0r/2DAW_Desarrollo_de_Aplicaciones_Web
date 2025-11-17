@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Examen Sección Bootstrap</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    </head>
+
+    <body>
+        <header class="container-fluid mt-5 mb-4">
+            <h1 class="text-center">Sección de Datos e Información</h1>
+        </header>
+
+        <main class="container px-5">
+            <table class="table table-striped table-bordered mb-5">
+                <thead class="table-dark">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Teléfono</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Juan Pérez</td>
+                        <td>juan@example.com</td>
+                        <td>+123 456 7890</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>María Gomez</td>
+                        <td>maria@example.com</td>
+                        <td>+123 456 7891</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Pedro Martinez</td>
+                        <td>pedro@example.com</td>
+                        <td>+123 456 7892</td>
+                    </tr>
+                </tbody>
+            </table>      
+
+            <form class="border rounded p-3">
+                <h5>Formulario de Registro</h5>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>                
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Teléfono</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+
+            <div class="container mt-5 pb-4">
+                <div class="row mb-3">
+                    <div class="border rounded col me-3 pt-3">
+                        <h5>Información 1</h5>
+                        <p>Descripción breve sbre el contenido de la tarjeta 1</p>
+                    </div>
+                    <div class="border rounded col me-3 pt-3">
+                        <h5>Información 2</h5>
+                        <p>Descripción breve sbre el contenido de la tarjeta 2</p>
+                    </div>
+                    <div class="border rounded col pt-3">
+                        <h5>Información 3</h5>
+                        <p>Descripción breve sbre el contenido de la tarjeta 3</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="border rounded col me-3 pt-3">
+                        <h5>Información 4</h5>
+                        <p>Descripción breve sbre el contenido de la tarjeta 4</p>
+                    </div>
+                    <div class="border rounded col me-3 pt-3">
+                        <h5>Información 5</h5>
+                        <p>Descripción breve sbre el contenido de la tarjeta 5</p>
+                    </div>
+                    <div class="border rounded col pt-3">
+                        <h5>Información 6</h5>
+                        <p>Descripción breve sbre el contenido de la tarjeta 6</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
