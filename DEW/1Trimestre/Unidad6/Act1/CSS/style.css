@@ -1,84 +1,130 @@
+/* Reset básico */
+html, body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
+
 body{
-    background-color: rgb(20, 20, 20);
-    color: white;
-    text-align: center;
+    text-align: left;
 }
 
 header{
-    font-size: 25px;
-    background-color: rgba(127, 226, 125, 0.668);
-    border: 1px solid white;
-    margin-top: -10px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 15px;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 24px;
 }
 
 main{
     display: grid;
-    grid-template-columns: repeat(2,auto);
+    grid-template-rows: auto auto;
+    grid-template-columns: 20% 80%;
+    width: 100%;
+    height: calc(100vh - 149px);
 }
 
-.formWorld{
-    display: grid;
-    grid-template-columns: repeat(3,auto);
-    grid-template-rows: repeat(2,auto);
-    grid-gap: 20px;
-    background-color: rgba(98, 98, 98, 0.516);
-    border-radius: 100px;
-    padding: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
+form{
+    text-align: start;
+    background-color: lightgray;
+    overflow-y: auto;  
+    overflow-x: hidden;
+    max-width: 100%;   
+    box-sizing: border-box;
 }
 
-.formWorld input{
+form h3{
     text-align: center;
-    border-radius: 20px;
-    align-self: center;
-    width: 20%;
-    padding-left:15px;
+    margin: 10px 0;
+    font-size: 25px;
 }
 
-.formWorld .map input{
-    width: 7%;
-}
-.formWorld .map{
-    margin-bottom: 20px;
-    grid-column: 1 / 4;
-}
-
-.formWorld .nature{
-    background-color: rgba(89, 230, 89, 0.259);
-    border-radius: 100px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+form .generalSettings,
+form .natureSettings,
+form .urbanSettings,
+form .comercialSettings{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.formWorld .urban{
-    background-color: rgba(230, 188, 89, 0.259);
-    border-radius: 100px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+.generalSettings{
+    background-image: url("../IMG/settings.avif");
+    background-size: cover;
+    background-position: center;
 }
 
-.formWorld .comercial{
-    background-color: rgba(89, 190, 230, 0.259);
-    border-radius: 100px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;    
+.natureSettings{
+    background-image: url('../IMG/nature.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.formWorld button{
-    grid-column: 2/3;
-    margin-left: auto;
-    margin-right: auto;    
-    width: 200px;
-    height: 100px;
-    border-radius: 200px;
-    background-color: coral;
+.urbanSettings{
+    background-image: url('../IMG/urban.avif');
+    background-size: cover;
+    background-position: center;
 }
 
-iframe{
+.comercialSettings{
+    background-image: url('../IMG/comercial.avif');
+    background-size: cover;
+    background-position: center;
+}
+
+form input{
+    margin: 5px;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+form button{
+    margin: 10px;
+    padding: 10px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+#result {
+    background: #f0f0f0;
+    border-left: 2px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#world {
+    display: grid;
+    gap: 1px;
+    background: #222;
+    width: 100%;
+    height: 90%;
+    max-width: 100vw; 
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+.cell {
+    aspect-ratio: 1 / 1; /* Cada celda es cuadrada */
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(234, 234, 234);
-    border-radius: 200px;
-    margin-top: 20px;
+}
+
+@media (max-width: 1100px) {
+    main {
+        grid-template-columns: 30% 70%;
+        height: calc(100vh - 149px);
+    }
+
+    form, #result {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
 }

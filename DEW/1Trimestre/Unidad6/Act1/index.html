@@ -8,15 +8,17 @@
         <header>
             <h1>Creador de mundos</h1>
         </header>
+
         <main>
-            <form id="form" class="formWorld">
-                <div class="map">
+            <form id="form">
+                <div class="generalSettings">
+                    <h3>General Settings</h3>
                     <p>Map Size:</p>
                     <input id="mapSize" type="number" placeholder="Tamaño del mapa" value="64">
                     <p>Max occupied area: </p>
                     <input id="maxOcupedArea" type="number" min="0" max="100" step="0.5" value="80"> %
                 </div>
-                <div class="nature">
+                <div class="natureSettings">
                     <h3>Nature</h3>
                     <p>Min zones: </p>
                     <input id="natMinZones" type="number" value="2">
@@ -27,7 +29,7 @@
                     <p>Total max size: </p>
                     <input id="natTotalMaxSize" type="number" value="800">
                 </div>
-                <div class="urban">
+                <div class="urbanSettings">
                     <h3>Urban</h3>
                     <p>Min zones: </p>
                     <input id="urbMinZones" type="number" value="4">
@@ -38,7 +40,7 @@
                     <p>Total max size: </p>
                     <input id="urbTotalMaxSize" type="number" value="800">
                 </div>
-                <div class="comercial">
+                <div class="comercialSettings">
                     <h3>Comercial</h3>
                     <p>Min zones: </p>
                     <input id="comMinZones" type="number" value="2">
@@ -52,7 +54,10 @@
                 <button id="generate" type="button">Generate</button>
             </form>
 
-            <iframe></iframe>
+            <div id="result">
+                <h2>Vista previa del mundo</h2>
+                <div id="world"></div>
+            </div>
             <script src="JS/script.js"></script>
         </main>
     </body>
