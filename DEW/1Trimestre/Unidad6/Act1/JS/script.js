@@ -62,13 +62,17 @@ function validator(mapSize,maxOcupedArea,natMinZones,natMaxZones,natMaxSize,natT
     return true;
 }
 
-function createWorld(mapSize, maxOcupedArea, natMinZones, natMaxZones, natMaxSize, natTotalMaxSize, urbMinZones, urbMaxZones, urbMaxSize, urbTotalMaxSize, comMinZones, comMaxZones, comMaxSize, comTotalMaxSize) { 
+function createWorld(mapSize, maxOccupiedArea,
+    natMinZones, natMaxZones, natMaxSize, natTotalMaxSize,
+    urbMinZones, urbMaxZones, urbMaxSize, urbTotalMaxSize,
+    comMinZones, comMaxZones, comMaxSize, comTotalMaxSize) {
 
     const world = document.getElementById("world");
     world.innerHTML = '';
     world.style.gridTemplateColumns = `repeat(${mapSize}, 1fr)`;
     world.style.gridTemplateRows = `repeat(${mapSize}, 1fr)`;
 
+    // Crear mapa vacío
     const map = [];
     for (let y = 0; y < mapSize; y++) {
         map[y] = [];
@@ -77,95 +81,115 @@ function createWorld(mapSize, maxOcupedArea, natMinZones, natMaxZones, natMaxSiz
         }
     }
 
-    // ---------------------------
-    // 2️⃣ Funciones auxiliares
-    // ---------------------------
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    // 1) Generar una sola isla conectada
+    const totalCells = mapSize * mapSize;
+    const islandSize = Math.floor(totalCells * maxOccupiedArea);
+    const islandCells = generateSingleIsland(mapSize, islandSize);
+
+    // Marcar isla como terreno base "T"
+    for (const c of islandCells) {
+        map[c.y][c.x] = "T";
     }
 
-    function findRandomEmptyCell() {
-        const empty = [];
-        for (let y = 0; y < mapSize; y++) {
-            for (let x = 0; x < mapSize; x++) {
-                if (!map[y][x]) empty.push({x, y});
+    // 2) Pintar interior con N/U/C dentro de la misma masa
+    paintZonesInSingleMass(map, mapSize);
+
+    // 3) Render del mapa
+    for (let y = 0; y < mapSize; y++) {
+        for (let x = 0; x < mapSize; x++) {
+            const div = document.createElement("div");
+            div.className = "cell";
+
+            switch (map[y][x]) {
+                case "N": div.style.backgroundColor = "green"; break;
+                case "U": div.style.backgroundColor = "gray"; break;
+                case "C": div.style.backgroundColor = "yellow"; break;
+                case "T": div.style.backgroundColor = "white"; break;
+                default:  div.style.backgroundColor = "white"; break;
             }
-        }
-        if (empty.length === 0) return null;
-        return empty[getRandomInt(0, empty.length - 1)];
-    }
 
-    function getEmptyNeighbors(x, y) {
-        const neighbors = [];
-        const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
-        for (let [dx,dy] of dirs) {
-            let nx = x + dx, ny = y + dy;
+            world.appendChild(div);
+        }
+    }
+}
+
+
+
+// ========================================================================
+// A) Genera UNA SOLA ISLA grande, continua, sin fragmentarse (GARANTIZADO)
+// ========================================================================
+function generateSingleIsland(mapSize, islandSize) {
+    const start = {
+        x: Math.floor(mapSize / 2),
+        y: Math.floor(mapSize / 2),
+    };
+
+    const island = [start];
+    const queue = [start];
+    const visited = new Set();
+    visited.add(start.x + "," + start.y);
+
+    while (island.length < islandSize && queue.length > 0) {
+        const cell = queue.shift();
+
+        const dirs = [
+            [1, 0], [-1, 0], [0, 1], [0, -1],
+            [1, 1], [1, -1], [-1, 1], [-1, -1]
+        ];
+
+        shuffleArray(dirs);
+
+        for (const [dx, dy] of dirs) {
+            const nx = cell.x + dx, ny = cell.y + dy;
+
             if (nx >= 0 && nx < mapSize && ny >= 0 && ny < mapSize) {
-                if (!map[ny][nx]) neighbors.push({x: nx, y: ny});
-            }
-        }
-        return neighbors;
-    }
+                const key = nx + "," + ny;
 
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-    }
+                if (!visited.has(key)) {
+                    visited.add(key);
+                    const node = { x: nx, y: ny };
+                    island.push(node);
+                    queue.push(node);
 
-    function generateZones(type, minZones, maxZones, maxSize, totalMaxSize) {
-        let numZones = getRandomInt(minZones, maxZones);
-        let totalFilled = 0;
-
-        for (let z = 0; z < numZones; z++) {
-            if (totalFilled >= totalMaxSize) break;
-
-            let size = Math.min(getRandomInt(1, maxSize), totalMaxSize - totalFilled);
-            let seed = findRandomEmptyCell();
-            if (!seed) break;
-
-            let queue = [seed];
-            map[seed.y][seed.x] = type;
-            totalFilled++;
-
-            while (queue.length && totalFilled < totalMaxSize && size > 1) {
-                let cell = queue.shift();
-                let neighbors = getEmptyNeighbors(cell.x, cell.y);
-                shuffleArray(neighbors);
-
-                for (let n of neighbors) {
-                    map[n.y][n.x] = type;
-                    queue.push(n);
-                    totalFilled++;
-                    size--;
-                    if (size <= 1) break;
+                    if (island.length >= islandSize) break;
                 }
             }
         }
     }
 
-    // ---------------------------
-    // 3️⃣ Generar zonas
-    // ---------------------------
-    generateZones("N", natMinZones, natMaxZones, natMaxSize, natTotalMaxSize);
-    generateZones("U", urbMinZones, urbMaxZones, urbMaxSize, urbTotalMaxSize);
-    generateZones("C", comMinZones, comMaxZones, comMaxSize, comTotalMaxSize);
+    return island;
+}
 
-    // ---------------------------
-    // 4️⃣ Renderizar mapa en DOM
-    // ---------------------------
+
+
+// ========================================================================
+// B) Rellena la isla con Naturaleza / Urbano / Comercial de forma orgánica
+// ========================================================================
+function paintZonesInSingleMass(map, mapSize) {
+
     for (let y = 0; y < mapSize; y++) {
         for (let x = 0; x < mapSize; x++) {
-            const cellDiv = document.createElement("div");
-            cellDiv.className = "cell";
-            switch(map[y][x]) {
-                case "N": cellDiv.style.backgroundColor = "green"; break;
-                case "U": cellDiv.style.backgroundColor = "gray"; break;
-                case "C": cellDiv.style.backgroundColor = "yellow"; break;
-                default: cellDiv.style.backgroundColor = "white";
+
+            if (map[y][x] === "T") {
+
+                const r = Math.random();
+
+                if (r < 0.65) map[y][x] = "N";      // 65% Naturaleza
+                else if (r < 0.85) map[y][x] = "U"; // 20% Urbano
+                else map[y][x] = "C";               // 15% Comercial
             }
-            world.appendChild(cellDiv);
         }
+    }
+}
+
+
+
+// ========================================================================
+// Utilidad
+// ========================================================================
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
     }
 }
