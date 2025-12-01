@@ -4,192 +4,151 @@ document.getElementById("generate").addEventListener("click", function(event){
 });
 
 function generate() {
-    /* Mapa base */
     const mapSize = parseInt(document.getElementById("mapSize").value);
-    const maxOcupedArea = parseFloat(document.getElementById("maxOcupedArea").value);
+    const maxOccupiedArea = parseFloat(document.getElementById("maxOcupedArea").value);
 
-    /* Naturaleza */
     const natMinZones = parseInt(document.getElementById("natMinZones").value);
     const natMaxZones = parseInt(document.getElementById("natMaxZones").value);
     const natMaxSize = parseInt(document.getElementById("natMaxSize").value);
     const natTotalMaxSize = parseInt(document.getElementById("natTotalMaxSize").value);
 
-    /* Urbano */
     const urbMinZones = parseInt(document.getElementById("urbMinZones").value);
     const urbMaxZones = parseInt(document.getElementById("urbMaxZones").value);
     const urbMaxSize = parseInt(document.getElementById("urbMaxSize").value);
     const urbTotalMaxSize = parseInt(document.getElementById("urbTotalMaxSize").value);
 
-    /* Comercial */
     const comMinZones = parseInt(document.getElementById("comMinZones").value);
     const comMaxZones = parseInt(document.getElementById("comMaxZones").value);
     const comMaxSize = parseInt(document.getElementById("comMaxSize").value);
     const comTotalMaxSize = parseInt(document.getElementById("comTotalMaxSize").value);
 
-    if(validator(mapSize, maxOcupedArea, natMinZones, natMaxZones, natMaxSize, natTotalMaxSize,urbMinZones, urbMaxZones, urbMaxSize, urbTotalMaxSize,comMinZones, comMaxZones, comMaxSize, comTotalMaxSize)) {        
-        console.log("Mapa generado con tamaño:", mapSize);
-
-        createWorld(mapSize, maxOcupedArea, natMinZones, natMaxZones, natMaxSize, natTotalMaxSize,urbMinZones, urbMaxZones, urbMaxSize, urbTotalMaxSize,comMinZones, comMaxZones, comMaxSize, comTotalMaxSize);
-    }
+    createWorld(mapSize, maxOccupiedArea, 
+        {min: natMinZones, max: natMaxZones, zoneMax: natMaxSize, totalMax: natTotalMaxSize, type: "N"},
+        {min: urbMinZones, max: urbMaxZones, zoneMax: urbMaxSize, totalMax: urbTotalMaxSize, type: "U"},
+        {min: comMinZones, max: comMaxZones, zoneMax: comMaxSize, totalMax: comTotalMaxSize, type: "C"});
 }
 
-function validator(mapSize,maxOcupedArea,natMinZones,natMaxZones,natMaxSize,natTotalMaxSize,urbMinZones,urbMaxZones,urbMaxSize,urbTotalMaxSize,comMinZones,comMaxZones,comMaxSize,comTotalMaxSize){
-
-    const rules = [
-        [mapSize > 0, "Tamaño incompatible de mapa"],
-        [maxOcupedArea > 0 && maxOcupedArea <= 100, "Tamaño incompatible de áreas ocupadas máximas del mapa"],
-        [natMinZones >= 0, "Tamaño mínimo de zonas de naturaleza incompatible"],
-        [natMaxZones > 0 && natMaxZones >= natMinZones, "Tamaño máximo de zonas de naturaleza incompatible"],
-        [natMaxSize > 0, "Tamaño máximo de zonas de naturaleza incompatible"],
-        [natTotalMaxSize > 0, "Tamaño total máximo de zonas de naturaleza incompatible"],
-        [urbMinZones >= 0, "Tamaño mínimo de zonas urbanas incompatible"],
-        [urbMaxZones > 0 && urbMaxZones >= urbMinZones, "Tamaño máximo de zonas urbanas incompatible"],
-        [urbMaxSize > 0, "Tamaño máximo de zonas urbanas incompatible"],
-        [urbTotalMaxSize > 0, "Tamaño total máximo de zonas urbanas incompatible"],
-        [comMinZones >= 0, "Tamaño mínimo de zonas comerciales incompatible"],
-        [comMaxZones > 0 && comMaxZones >= comMinZones, "Tamaño máximo de zonas comerciales incompatible"],
-        [comMaxSize > 0, "Tamaño máximo de zonas comerciales incompatible"],
-        [comTotalMaxSize > 0, "Tamaño total máximo de zonas comerciales incompatible"],
-    ];
-
-    for (const [condition, message] of rules) {
-        if (!condition) {
-            alert(message);
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function createWorld(mapSize, maxOccupiedArea,
-    natMinZones, natMaxZones, natMaxSize, natTotalMaxSize,
-    urbMinZones, urbMaxZones, urbMaxSize, urbTotalMaxSize,
-    comMinZones, comMaxZones, comMaxSize, comTotalMaxSize) {
-
-    const world = document.getElementById("world");
-    world.innerHTML = '';
-    world.style.gridTemplateColumns = `repeat(${mapSize}, 1fr)`;
-    world.style.gridTemplateRows = `repeat(${mapSize}, 1fr)`;
-
-    // Crear mapa vacío
+/* Creador de mundo */
+function createWorld(mapSize, maxOccupiedArea, nature, urban, comercial) {
     const map = [];
     for (let y = 0; y < mapSize; y++) {
         map[y] = [];
-        for (let x = 0; x < mapSize; x++) {
-            map[y][x] = null;
-        }
+        for (let x = 0; x < mapSize; x++) map[y][x] = null;
     }
 
-    // 1) Generar una sola isla conectada
+    // Crear isla con forma orgánica
     const totalCells = mapSize * mapSize;
-    const islandSize = Math.floor(totalCells * maxOccupiedArea);
-    const islandCells = generateSingleIsland(mapSize, islandSize);
+    const islandSize = Math.floor(totalCells * maxOccupiedArea / 100);
+    generateOrganicIsland(map, mapSize, islandSize);
 
-    // Marcar isla como terreno base "T"
-    for (const c of islandCells) {
-        map[c.y][c.x] = "T";
-    }
+    // Pintar zonas según parámetros
+    paintZones(map, mapSize, nature);
+    paintZones(map, mapSize, urban);
+    paintZones(map, mapSize, comercial);
 
-    // 2) Pintar interior con N/U/C dentro de la misma masa
-    paintZonesInSingleMass(map, mapSize);
+    // Rellenar resto con Naturaleza
+    for(let y=0;y<mapSize;y++)
+        for(let x=0;x<mapSize;x++)
+            if(map[y][x]===null) map[y][x]="N";
 
-    // 3) Render del mapa
-    for (let y = 0; y < mapSize; y++) {
-        for (let x = 0; x < mapSize; x++) {
-            const div = document.createElement("div");
-            div.className = "cell";
-
-            switch (map[y][x]) {
-                case "N": div.style.backgroundColor = "green"; break;
-                case "U": div.style.backgroundColor = "gray"; break;
-                case "C": div.style.backgroundColor = "yellow"; break;
-                case "T": div.style.backgroundColor = "white"; break;
-                default:  div.style.backgroundColor = "white"; break;
-            }
-
-            world.appendChild(div);
-        }
-    }
+    renderMapCanvas(map, mapSize);
 }
 
+/* Generar isla */
+function generateOrganicIsland(map, mapSize, islandSize) {
+    const center = {x: Math.floor(mapSize/2), y: Math.floor(mapSize/2)};
+    const island = [center];
+    const queue = [center];
+    const visited = new Set([center.x+","+center.y]);
 
-
-// ========================================================================
-// A) Genera UNA SOLA ISLA grande, continua, sin fragmentarse (GARANTIZADO)
-// ========================================================================
-function generateSingleIsland(mapSize, islandSize) {
-    const start = {
-        x: Math.floor(mapSize / 2),
-        y: Math.floor(mapSize / 2),
-    };
-
-    const island = [start];
-    const queue = [start];
-    const visited = new Set();
-    visited.add(start.x + "," + start.y);
-
-    while (island.length < islandSize && queue.length > 0) {
+    while(island.length < islandSize && queue.length > 0){
         const cell = queue.shift();
-
-        const dirs = [
-            [1, 0], [-1, 0], [0, 1], [0, -1],
-            [1, 1], [1, -1], [-1, 1], [-1, -1]
-        ];
-
-        shuffleArray(dirs);
-
-        for (const [dx, dy] of dirs) {
+        const dirs = shuffleArray([[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]);
+        for(const [dx,dy] of dirs){
             const nx = cell.x + dx, ny = cell.y + dy;
-
-            if (nx >= 0 && nx < mapSize && ny >= 0 && ny < mapSize) {
-                const key = nx + "," + ny;
-
-                if (!visited.has(key)) {
+            const key = nx+","+ny;
+            if(nx>=0 && nx<mapSize && ny>=0 && ny<mapSize && !visited.has(key)){
+                // Probabilidad para bordes más irregulares
+                const distX = Math.abs(nx - center.x);
+                const distY = Math.abs(ny - center.y);
+                const distanceFactor = Math.sqrt(distX*distX + distY*distY) / (mapSize/2);
+                if(Math.random() < (1 - distanceFactor)){ 
                     visited.add(key);
-                    const node = { x: nx, y: ny };
+                    const node = {x:nx, y:ny};
                     island.push(node);
                     queue.push(node);
-
-                    if (island.length >= islandSize) break;
+                    map[ny][nx] = "T"; // terreno base
+                    if(island.length >= islandSize) break;
                 }
             }
         }
     }
-
-    return island;
 }
 
+/* Pintar zonas */
+function paintZones(map, mapSize, config){
+    const zoneCount = getRandomInt(config.min, config.max);
+    let totalPainted = 0;
 
+    for(let z=0; z<zoneCount && totalPainted < config.totalMax; z++){
+        const maxSize = Math.min(config.zoneMax, config.totalMax - totalPainted);
+        const seed = findRandomTile(map, "T");
+        if(!seed) break;
 
-// ========================================================================
-// B) Rellena la isla con Naturaleza / Urbano / Comercial de forma orgánica
-// ========================================================================
-function paintZonesInSingleMass(map, mapSize) {
+        let painted = 0;
+        const queue = [seed];
+        map[seed.y][seed.x] = config.type;
+        painted++; totalPainted++;
 
-    for (let y = 0; y < mapSize; y++) {
-        for (let x = 0; x < mapSize; x++) {
-
-            if (map[y][x] === "T") {
-
-                const r = Math.random();
-
-                if (r < 0.65) map[y][x] = "N";      // 65% Naturaleza
-                else if (r < 0.85) map[y][x] = "U"; // 20% Urbano
-                else map[y][x] = "C";               // 15% Comercial
+        while(queue.length > 0 && painted < maxSize){
+            const cell = queue.shift();
+            const dirs = shuffleArray([[1,0],[-1,0],[0,1],[0,-1]]);
+            for(const [dx,dy] of dirs){
+                const nx = cell.x + dx, ny = cell.y + dy;
+                if(nx>=0 && nx<mapSize && ny>=0 && ny<mapSize && map[ny][nx]==="T"){
+                    map[ny][nx] = config.type;
+                    painted++; totalPainted++;
+                    queue.push({x:nx, y:ny});
+                    if(painted >= maxSize) break;
+                }
             }
         }
     }
 }
 
+function findRandomTile(map, value){
+    const candidates=[];
+    for(let y=0;y<map.length;y++)
+        for(let x=0;x<map.length;x++)
+            if(map[y][x]===value) candidates.push({x,y});
+    if(candidates.length===0) return null;
+    return candidates[Math.floor(Math.random()*candidates.length)];
+}
 
+function getRandomInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 
-// ========================================================================
-// Utilidad
-// ========================================================================
-function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+function shuffleArray(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]];} return arr;}
+
+/* Renderizar */
+function renderMapCanvas(map, mapSize){
+    const canvas = document.getElementById("world");
+    const container = document.getElementById("worldContainer");
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    const ctx = canvas.getContext("2d");
+    const cellWidth = canvas.width / mapSize;
+    const cellHeight = canvas.height / mapSize;
+
+    for(let y=0;y<mapSize;y++){
+        for(let x=0;x<mapSize;x++){
+            switch(map[y][x]){
+                case "N": ctx.fillStyle="white"; break;
+                case "U": ctx.fillStyle="gray"; break;
+                case "C": ctx.fillStyle="yellow"; break;
+                case "T": ctx.fillStyle="green"; break;
+                default: ctx.fillStyle="white"; break;
+            }
+            ctx.fillRect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
     }
 }

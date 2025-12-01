@@ -3,16 +3,20 @@
     <head>
         <title>Contador de Visitas</title>
     </head>
-    
+
     <body>
 
         <h1>Visitas: </h1>
         <p id="contador">0</p>
 
         <script>
-            const claveLocalStorage = "";
+            const claveLocalStorage = "visitas";
 
             let visitas = parseInt(localStorage.getItem(claveLocalStorage));
+
+            if (isNaN(visitas)) {
+                visitas = 0; 
+            }
 
             visitas++;
 
@@ -20,5 +24,6 @@
 
             document.getElementById('contador').textContent = visitas;
         </script>
+
     </body>
 </html>
