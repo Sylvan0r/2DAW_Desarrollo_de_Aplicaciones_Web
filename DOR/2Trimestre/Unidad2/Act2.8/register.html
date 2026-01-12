@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro - Academia Online</title>
+        <link rel="stylesheet" href="SCSS/style.css">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="index.html"><div class="logo">SkillHive</div></a>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Regístrate y empieza a aprender</h1>
+            <p>Crea tu cuenta y accede a cientos de cursos online para mejorar tus habilidades.</p>
+
+            <div class="auth-card">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tuemail@ejemplo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" placeholder="********" required>
+                    </div>
+
+                    <button type="submit" class="btn-register">Crear Cuenta</button>
+                </form>
+
+                <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+            </div>
+        </section>
+    </body>
+</html>

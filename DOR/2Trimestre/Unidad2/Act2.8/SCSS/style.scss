@@ -230,11 +230,64 @@ header {
     }
 }
 
-// FOOTER
-footer {
-    background: $dark;
-    color: $light;
-    padding: 2rem;
+// FORMULARIOS
+.auth-card {
+    @extend %card;
+    max-width: 400px;
+    width: 100%;
+    margin-top: 2rem;
+    text-align: left;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-bottom: .3rem;
+            font-weight: 500;
+        }
+
+        input {
+            padding: .8rem;
+            border: 1px solid lighten($dark, 40%);
+            border-radius: $radius;
+            font-size: 1rem;
+
+            &:focus {
+                outline: none;
+                border-color: $primary;
+                box-shadow: 0 0 0 2px rgba($primary, .2);
+            }
+        }
+    }
+
+    p {
+        margin-top: 1rem;
+        font-size: .9rem;
+        text-align: center;
+
+        a {
+            color: $primary;
+            font-weight: 600;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+//BOTON SECUNDARIO DE LOGIN QUE EL ORIGINAL NO FUNCIONA CORRECTAMENTE POR ALGUNA RAZON
+.btn-auth {
+    @include btn($secondary);
+
+    width: 100%;
+    font-size: 1.1rem;
     text-align: center;
-    margin-top: 4rem;
 }
