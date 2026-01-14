@@ -2,6 +2,7 @@ let rums = [];
 let cart = [];
 
 getDataAndShowData();
+contentOffcanvasCart();
 
 function getDataAndShowData() {
     fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Rum")
@@ -39,25 +40,63 @@ function getDataAndShowData() {
 }
 
 function addToCart(name, image, id){
-    const value = name+" ,"+image+' ,'+id;
-    let previousVal = getCart();
-    if(previousVal){
-        previousVal += value;
+    let cart = getCart();
+    if(cart[id]){
+        cart[id].quantity += 1;
     }else{
-        previousVal = value;
+        cart[id] = {name, image, quantity: 1};
     }
+    setCookie("cart", JSON.stringify(cart), 7);
+    contentOffcanvasCart();
+    window.location.reload();
+}
 
-    document.cookie = `cart=${previousVal}`;
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + "=" + (value || "") + "; expires="  + date.toUTCString() + "; path=/";
 }
 
 function getCart(){
+    let cart = {};
     const nameEQ = "cart=";
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i].trim();
         if (c.indexOf(nameEQ) === 0) {
-            return JSON.parse(c.substring(nameEQ.length)); // Convertir la cadena JSON de vuelta en un array
+            cart = JSON.parse(c.substring(nameEQ.length));
         }
     }
-    return []; // Si no existe la cookie, devolver un carrito vacío
+    return cart;
+}
+
+function clearCart(){
+    setCookie("cart", JSON.stringify({}), 7);
+}
+
+function contentOffcanvasCart(){
+    let cart = getCart();
+    let content = "<h5>Carrito de Compras</h5><ul>";
+    for (let id in cart) {
+        content += `<li><img src="${cart[id].image}" alt="${cart[id].name}"class="img-thumbnail"> ${cart[id].name} - Cantidad: ${cart[id].quantity}</li>`;
+    }
+    content += "</ul>";
+    content += '<button class="btn btn-success w-100 mt-3" onclick="descargarPDF()">Descargar PDF</button>';
+    document.querySelector(".offcanvas-body").innerHTML = content;
+}
+
+function descargarPDF(){
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let cart = getCart();
+    
+    doc.text("Resumen de tu Pedido", 10, 10);
+    let y = 20;
+    
+    for (let id in cart) {
+        doc.text(`- ${cart[id].name} (Cant: ${cart[id].quantity})`, 10, y);
+        y += 10;
+    }
+    
+    doc.save("pedido_cocteles.pdf");
 }
