@@ -1,0 +1,53 @@
+//Valores en si de los botones
+$primary: #3498db;
+$secondary: #e74c3c;
+$tertiary: #2ecc71;
+$primaryText: "Arial", sans-serif;
+$secondaryText: "Gregoria", serif;
+$tertiaryText: "Courier New", monospace;
+
+//Mixins usados para los botonses
+@mixin primaryButton($primaryText, $primary){
+    background-color: $primary;
+    font-family: $primaryText;
+}
+
+@mixin secondaryButton($secondaryText, $secondary){
+    background-color: $secondary;
+    font-family: $secondaryText;
+}
+
+@mixin tertiaryButton($tertiaryText, $tertiary){
+    background-color: $tertiary;
+    font-family: $tertiaryText;
+}
+
+//Valores que comparten los botones en general en un temporal
+%commonVals{
+    padding: 20px;
+    border-radius: 5px;
+    color:white;
+}
+
+//Contenedor que centra todo los contenidos en el centro de la pagina
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+//Botones
+.button {
+    @extend %commonVals;
+
+    &.primario {
+        @include primaryButton($primaryText, $primary);
+    }
+    &.secundario {
+        @include secondaryButton($secondaryText, $secondary);
+    }
+    &.terciario {
+        @include tertiaryButton($tertiaryText, $tertiary);
+    }
+}
