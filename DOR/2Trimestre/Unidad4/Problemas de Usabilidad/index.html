@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Empresa XYZ | Servicios profesionales</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+    <header>
+        <h1>Empresa XYZ</h1>
+        <p>Soluciones digitales pensadas para personas</p>
+    </header>
+
+    <nav aria-label="Navegación principal">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Sobre nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main id="inicio">
+
+        <section id="servicios">
+            <h2>Nuestros servicios</h2>
+            <p>
+                Ofrecemos soluciones profesionales adaptadas a las necesidades de cada cliente,
+                priorizando la usabilidad, accesibilidad y experiencia de usuario.
+            </p>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+
+            <form id="contact-form" novalidate>
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+
+                <button type="submit">Enviar mensaje</button>
+
+                <p id="form-feedback" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section id="nosotros">
+            <h2>Información importante</h2>
+            <p>Teléfono de contacto: <strong>123 456 789</strong></p>
+            <p>Correo: contacto@empresaXYZ.com</p>
+            <p>
+                Más información en nuestra web:
+                <a href="https://example.com">Visitar sitio oficial</a>
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2024 Empresa XYZ. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    </body>
+</html>

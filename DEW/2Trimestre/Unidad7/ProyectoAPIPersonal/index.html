@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dragon Ball Z Explorer</title>
+        <link rel="stylesheet" href="app.css">
+        <script src="https://cdn.tailwindcss.com"></script> 
     </head>
-    <body>
-        <header class="bg-dark text-white p-3 mb-4">
-            <img src="https://img1.picmix.com/output/stamp/normal/3/2/1/6/1296123_9b651.png" alt="Dragon Ball API Logo" style="height: 50px; vertical-align: middle;">
-            <h1 class="text-center">Dragon Ball API Test</h1>
+
+    <body class="bg-gray-900 text-white font-sans min-h-screen">
+        <header class="bg-gradient-to-b from-orange-600 to-orange-500 p-6 shadow-2xl border-b-4 border-yellow-400">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="https://img1.picmix.com/output/stamp/normal/3/2/1/6/1296123_9b651.png" alt="Logo" class="h-16 animate-pulse">
+                    <h1 class="text-4xl font-black italic tracking-tighter uppercase text-yellow-300 drop-shadow-md">DBZ API</h1>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <input type="text" id="searchInput" placeholder="Buscar guerrero..." 
+                        class="p-2 rounded-lg bg-white text-gray-800 focus:ring-4 focus:ring-yellow-400 outline-none w-64">
+                    
+                    <select id="affiliationFilter" class="p-2 rounded-lg bg-white text-gray-800 focus:ring-4 focus:ring-yellow-400 outline-none">
+                        <option value="">Todas las afiliaciones</option>
+                    </select>
+
+                    <button id="clearFavs" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-bold transition">
+                        Limpiar Favoritos
+                    </button>
+                </div>
+            </div>
         </header>
 
-        <span id="contents">
+        <main class="container mx-auto p-6">
+            <div class="flex justify-between items-center mb-8 bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <p id="visitCount" class="text-orange-400 font-mono font-bold"></p>
+                <div id="statsBox" class="text-sm italic text-gray-400"></div>
+            </div>
 
-        </span>
+            <div id="contents" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                </div>
+        </main>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
