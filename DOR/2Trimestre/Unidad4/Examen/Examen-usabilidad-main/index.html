@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sitio con Problemas de Usabilidad</title>
+        <style>
+            body {
+                font-family: 'Times New Roman', serif;
+                background-color: #f4f4f4;
+                /* El color del texto del cuerpo es un gris muy claro que puede dificultar 
+                la lectura en algunos casos, lo he cambiado a negro para una lectura más fácil */
+                color: #000;
+                /* También he aumentado el tamaño de la fuente para mejorar la legibilidad */
+                font-size: large;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                text-align: justify;
+                /* El container es muy difícil de diferenciar de el fondo de la página, 
+                así que he hecho que tenga un fondo de color blanco para diferenciarlo de 
+                el gris del fondo de la página. */
+                background-color: #fff;
+                border: 1px solid #eee;
+                border-radius: 5px;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .nav {
+                background-color: #333;
+                padding: 10px;
+            }
+            .nav a {
+                /* Los colores del texto del nav eran del mismo color que el fondo,
+                haciendo imposible la lectura, los he cambiado a blanco para que sea legible */
+                color: #fff;
+                margin: 0 15px;
+                text-decoration: none;
+                position: relative;
+            }
+            .confusing-nav {
+                background-color: #555;
+                padding: 15px;
+                text-align: center;
+            }
+            .confusing-nav a {
+                /* Los colores del texto del nav eran del mismo color que el fondo,
+                haciendo imposible la lectura, los he cambiado a blanco para que sea legible */
+                color: #fff;
+                margin: 0 5px;
+                text-decoration: underline;
+            }
+            .content {
+                margin-top: 20px;
+            }
+            .link {
+                display: block;
+                margin-top: 20px;
+                color: blue;
+            }
+            /* Añadido la funcionalidad a los links de section de al ser visitados que 
+            cambien de color para indicar que han sido visitados */
+            .link:visited {
+                color: purple;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <a href="#">Haga esto</a>
+            <a href="#">Más cosas</a>
+            <a href="#">Descubre</a>
+            <a href="#">Clic aquí</a>
+            <a href="#">Ir a</a>
+        </div>
+        <!-- Esta sección es confusa porque no está claro a dónde lleva cada enlace,
+        las he cambiado para que lleven a partes del container, he tenido que quitar
+        una pero tiene mas sentido, ya que tenemos el nav superior para otras paginas
+        y el inferior para apartados de la pagina actual. -->
+        <div class="confusing-nav">
+            <a href="#bienvenido">Inicio</a>
+            <!-- Cambiado de "???" a "Noticias" -->
+            <a href="#noticias">Noticias</a>
+            <!-- Cambiado de "Tal vez aquí" a "Contacto" -->
+            <a href="#contacto">Contacto</a>
+            <!-- Cambiado de "No esto" a "Nosotros" -->
+            <a href="#nosotros">Nosotros</a>
+        </div>
+        <!-- He tenido que cambiar la estructura de conainer para que sea accesible usando
+        el nav inferior -->
+        <div class="container">
+            <!-- Div añadido con id "bienvenido" -->
+            <div id="bienvenido">
+                <h1>Bienvenido a Nuestra Plataforma</h1>
+                <p>En aras de optimizar la eficiencia en el desempeño cognitivo, hemos desarrollado un conglomerado de herramientas cuyo propósito fundamental radica en la maximización del impacto estratégico dentro del espectro operacional contemporáneo.</p>
+                <a href="#" class="link">Haga esto</a>
+            </div>
+            <!-- Div añadido con id "noticias" -->
+            <div id="noticias">
+                <h2>Sección de Noticias</h2>
+                <p>Información relevante sobre aspectos de alto nivel que pueden o no ser pertinentes en el marco de la actualidad globalizada.</p>
+                <a href="#" class="link">Ver más</a>
+            </div>
+            <!-- Div añadido con id "contacto" -->
+            <div id="contacto">
+                <h2>Contacto</h2>
+                <p>Si requiere comunicarse con nuestro equipo, por favor utilice el método habitual para establecer una interacción efectiva y recíproca.</p>
+                <a href="#" class="link">Haz algo</a>
+            </div>
+            <!-- Div añadido con id "nosotros" -->
+            <div id="nosotros">
+                <h2>Sobre Nosotros</h2>
+                <p>Nosotros somos un grupo de individuos que comparten una visión centrada en la creación de iniciativas de gran impacto, cuya funcionalidad puede ser percibida de manera subjetiva dependiendo del contexto situacional.</p>
+                <a href="#" class="link">Seguir</a>
+            </div>
+        </div>
+    </body>
+</html>
